@@ -146,6 +146,7 @@ nav .register-btn:hover{
     justify-content: center;
     width: 100vw;
     margin-top: 116px;
+    font-family: 'Reckless-Regular';
 }
 
 .center--text--content{
@@ -315,9 +316,10 @@ nav .register-btn:hover{
 .second-section-divider{
     width: 100vw;
     height: 800px;
-    background-image: url("./assets/images/secondSectionDivider.jpg");
-    background-size: cover;
+    background-image: url("./assets/images/flowersLowRes.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 45%;
 }
 
 .outdoors-wrapper{
@@ -420,10 +422,12 @@ nav .register-btn:hover{
     background-image: url("./assets/images/thirdSectionDivider.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: var(--darkBlue);
 }
 
 .third-section-divider--wrapper{
     background-color: var(--darkBlue);
+    margin-bottom: -1px;
 }
 
 .fourth-sectionn-divider{
@@ -537,7 +541,8 @@ nav .register-btn:hover{
     width: 300px;
     height: 324px;
     right: 209px;
-    background-image: url("./assets/images/ctaTwo.jpg");
+    background-image: url("./assets/images/kayak.jpg");
+    background-size: cover;
 }
 
 .cta-image-three{
@@ -546,7 +551,8 @@ nav .register-btn:hover{
     right: -33px;
     top: 205px;
     z-index: -2;
-    background-image: url("./assets/images/ctaThree.jpg");
+    background-image: url("./assets/images/peopleSitting.jpg");
+    background-size: cover;
 }
 
 .cta-image-four{
@@ -554,7 +560,8 @@ nav .register-btn:hover{
     height: 415px;
     top: 570px;
     left: -65px;
-    background-image: url("./assets/images/ctaFour.jpg");
+    background-image: url("./assets/images/whosgonnacarrytheboats.jpg");
+    background-size: cover;
 }
 
 .cta-image-five{
