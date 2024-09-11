@@ -1,4 +1,3 @@
-// Function to check if nav bottom has hit the top of .outdoors-wrapper
 function checkNavPosition() {
   const nav = document.querySelector("nav");
   const outdoorsWrapper = document.querySelector(".outdoors-wrapper");

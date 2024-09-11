@@ -34,7 +34,6 @@
     box-sizing: border-box;
 }
 
-
 :root{
     --darkBlue: #343741;
     --beige: #FAE4D0;
@@ -45,6 +44,11 @@ body{
     color: var(--darkBlue);
 }
 
+a{
+    text-decoration: none;
+    color: var(--darkBlue);
+}
+
 ul{
     list-style: none;
     font-family: 'Brut-Regular', sans-serif;
@@ -52,6 +56,8 @@ ul{
     gap: 50px;
     align-items: center;
 }
+
+
 
 nav{
     width: 100vw;
@@ -414,12 +420,12 @@ footer .middle{
 }
 
 .cta-button:hover{
-    background-color: white;
+    background-color: transparent;
     color: var(--orange);
 }
 
 .cta-background{
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(250,228,208,1) 50%, rgba(255,255,255,1) 100%);  
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, var(--beige) 50%, rgba(255,255,255,1) 100%);  
     position: absolute;
     top: 0;
     left: 0;
