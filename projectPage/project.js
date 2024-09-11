@@ -3,96 +3,46 @@ const scroll = new LocomotiveScroll({
   smooth: true,
 });
 
-let lastScrollY = 0;
-let isNavHidden = false;
-
-// Function to hide or show the nav based on scroll direction
-function handleNavVisibility(instance) {
+function checkNavColorChange(instance) {
   const nav = document.querySelector("nav");
-  const currentScrollY = instance.scroll.y;
+  const ctaBackground = document.querySelector(".cta-background");
+  const ctaImageFive = document.querySelector(".cta-image-five");
 
-  // Check if scrolling down
-  if (currentScrollY > lastScrollY && !isNavHidden) {
-    nav.style.transform = "translateY(-100%)"; // Hide the nav
-    isNavHidden = true;
-  }
-  // Check if scrolling up
-  else if (currentScrollY < lastScrollY && isNavHidden) {
-    nav.style.transform = "translateY(0)"; // Show the nav
-    isNavHidden = false;
-  }
+  // Get the bottom of the nav and the top of each wrapper
 
-  lastScrollY = currentScrollY;
+  const ctaBackgroundTop =
+    ctaBackground.getBoundingClientRect().top + instance.scroll.y;
+  const ctaImageFiveTop =
+    ctaImageFive.getBoundingClientRect().top + instance.scroll.y;
+
+  const navBottom = nav.getBoundingClientRect().bottom + instance.scroll.y;
+  nav.classList.remove("nav-color-amenities");
+  ctaBackground.style.backgroundColor = ""; // Reset cta background color
+
+  // Check if nav hits the interiors-wrapper
+  if (navBottom < ctaBackgroundTop) {
+    nav.classList.add("nav-color-interiors"); // Change nav color for interiors-wrapper
+    nav.style.backgroundColor = ""; // Reset nav background color
+    document.querySelector(".logo").style.backgroundImage =
+      "url('../assets/images/TheA.svg')";
+  }
+  // Check if nav hits the cta-background
+  else if (navBottom >= ctaBackgroundTop && navBottom < ctaImageFiveTop) {
+    nav.classList.add("nav-color-amenities"); // Change nav color to match amenities
+    ctaBackground.style.backgroundColor = "var(--darkBlue)"; // Change background color of cta-background
+    document.querySelector(".logo").style.backgroundImage =
+      "url('../assets/images/TheABeige.svg')";
+  }
+  // Check if nav hits the cta-image-five and revert to default
+  else if (navBottom >= ctaImageFiveTop) {
+    nav.classList.remove("nav-color-amenities"); // Reset to default
+    nav.style.backgroundColor = ""; // Reset nav background color
+    document.querySelector(".logo").style.backgroundImage =
+      "url('../assets/images/TheA.svg')";
+  }
 }
-
-// Image toggle click event - Move outside scroll handler to avoid multiple bindings
-let originalSrc = "./assets/images/rectangleSwitch.svg";
-let alternativeSrc = "./assets/images/alternativeClick.svg";
-
-$(".rectangle-switch").on("click", function () {
-  let $img = $(this);
-
-  // Get the current image source
-  let currentSrc = $img.attr("src");
-
-  // Toggle the image source
-  $img.attr("src", currentSrc === originalSrc ? alternativeSrc : originalSrc);
-});
 
 // Scroll event handler for Locomotive Scroll
 scroll.on("scroll", (instance) => {
-  var scrollTop = instance.scroll.y;
-  var maxScroll = document.body.scrollHeight - window.innerHeight;
-
-  // Calculate the border-radius for each element
-  var newRadiusFirstSection = (scrollTop / maxScroll) * 2100;
-  var newRadiusRectangleSwitch = (scrollTop / maxScroll) * 650;
-  var newRadiusFirstProject = (scrollTop / maxScroll) * 1600;
-
-  // Animate border-radius for .first-section-divider
-  $(".first-section-divider").css(
-    "border-radius",
-    "0px 0px " + newRadiusFirstSection + "px 0px"
-  );
-
-  $(".first-project-display").css(
-    "border-radius",
-    "0px 0px " + newRadiusFirstProject + "px 0px"
-  );
-
-  // Animate border-radius for .rectangle-switch
-  $(".rectangle-switch").css(
-    "border-radius",
-    "0px 0px " + newRadiusRectangleSwitch + "px 0px"
-  );
-
-  // Get the .second-section-divider element
-  const secondSectionDivider = document.querySelector(
-    ".second-section-divider"
-  );
-
-  // Change background color of .cta-background after specific scroll
-  const ctaBackground = document.querySelector(".cta-background");
-  const scrollThreshold = 3800; // Change this value to your desired threshold
-  const bottomThreshold = 4560;
-  console.log(scrollTop);
-
-  if (scrollTop > scrollThreshold) {
-    // Remove the gradient and set a solid background color
-    ctaBackground.style.background = "#343741";
-  } else if (scrollTop < scrollThreshold) {
-    // Revert back to the gradient when scrolling back up
-    ctaBackground.style.background = "white";
-  }
-
-  if (scrollTop > bottomThreshold) {
-    // Revert back to the gradient when scrolling back up
-    ctaBackground.style.background = "white";
-  } else if (scrollTop < scrollThreshold) {
-    // Revert back to the gradient when scrolling back up
-    ctaBackground.style.background = "white";
-  }
-
-  // Handle nav visibility based on scroll direction
-  // handleNavVisibility(instance);
+  checkNavColorChange(instance);
 });

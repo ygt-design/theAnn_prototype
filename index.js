@@ -23,6 +23,8 @@ function checkNavColorChange(instance) {
   const outdoorsWrapper = document.querySelector(".outdoors-wrapper");
   const amenitiesWrapper = document.querySelector(".third-section-divider");
   const interiorsWrapper = document.querySelector(".interiors-wrapper");
+  const ctaBackground = document.querySelector(".cta-background");
+  const ctaImageFive = document.querySelector(".cta-image-five");
 
   // Get the bottom of the nav and the top of each wrapper
   const navBottom = nav.getBoundingClientRect().bottom + instance.scroll.y;
@@ -32,6 +34,10 @@ function checkNavColorChange(instance) {
     amenitiesWrapper.getBoundingClientRect().top + instance.scroll.y;
   const interiorsTop =
     interiorsWrapper.getBoundingClientRect().top + instance.scroll.y;
+  const ctaBackgroundTop =
+    ctaBackground.getBoundingClientRect().top + instance.scroll.y;
+  const ctaImageFiveTop =
+    ctaImageFive.getBoundingClientRect().top + instance.scroll.y;
 
   // Reset all color change classes first
   nav.classList.remove(
@@ -39,6 +45,7 @@ function checkNavColorChange(instance) {
     "nav-color-amenities",
     "nav-color-interiors"
   );
+  ctaBackground.style.backgroundColor = ""; // Reset cta background color
 
   // Check if nav hits the outdoors-wrapper
   if (navBottom >= outdoorsTop && navBottom < amenitiesTop) {
@@ -49,10 +56,69 @@ function checkNavColorChange(instance) {
     nav.classList.add("nav-color-amenities"); // Change nav color for amenities-wrapper
   }
   // Check if nav hits the interiors-wrapper
-  else if (navBottom >= interiorsTop) {
+  else if (navBottom >= interiorsTop && navBottom < ctaBackgroundTop) {
     nav.classList.add("nav-color-interiors"); // Change nav color for interiors-wrapper
   }
+  // Check if nav hits the cta-background
+  else if (navBottom >= ctaBackgroundTop && navBottom < ctaImageFiveTop) {
+    nav.classList.add("nav-color-amenities"); // Change nav color to match amenities
+    ctaBackground.style.backgroundColor = "var(--darkBlue)"; // Change background color of cta-background
+  }
+  // Check if nav hits the cta-image-five and revert to default
+  else if (navBottom >= ctaImageFiveTop) {
+    nav.classList.remove(
+      "nav-color-amenities",
+      "nav-color-change",
+      "nav-color-interiors"
+    ); // Reset to default
+    nav.style.backgroundColor = ""; // Reset nav background color
+  }
 }
+
+// Scroll event handler for Locomotive Scroll
+scroll.on("scroll", (instance) => {
+  var scrollTop = instance.scroll.y;
+  var maxScroll = document.body.scrollHeight - window.innerHeight;
+
+  // Calculate the border-radius for each element
+  var newRadiusFirstSection = (scrollTop / maxScroll) * 2100;
+  var newRadiusRectangleSwitch = (scrollTop / maxScroll) * 650;
+  var newRadiusFirstProject = (scrollTop / maxScroll) * 1600;
+
+  // Animate border-radius for .first-section-divider
+  $(".first-section-divider").css(
+    "border-radius",
+    "0px 0px " + newRadiusFirstSection + "px 0px"
+  );
+
+  $(".first-project-display").css(
+    "border-radius",
+    "0px 0px " + newRadiusFirstProject + "px 0px"
+  );
+
+  // Animate border-radius for .rectangle-switch
+  $(".rectangle-switch").css(
+    "border-radius",
+    "0px 0px " + newRadiusRectangleSwitch + "px 0px"
+  );
+
+  // Get the .second-section-divider element
+  const secondSectionDivider = document.querySelector(
+    ".second-section-divider"
+  );
+
+  // Check if .second-section-divider is in the viewport using Locomotive Scroll's internal system
+  if (isInViewport(secondSectionDivider, instance)) {
+    var newRadiusSecondSection = (scrollTop / maxScroll) * 1200; // Adjust the max value
+    $(".second-section-divider").css(
+      "border-radius",
+      "0px " + newRadiusSecondSection + "px 0px 0px"
+    );
+  }
+
+  // Check if nav color should change based on its position relative to .outdoors-wrapper, etc.
+  checkNavColorChange(instance);
+});
 
 // Function to hide or show the nav based on scroll direction
 function handleNavVisibility(instance) {

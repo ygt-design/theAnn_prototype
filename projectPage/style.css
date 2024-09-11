@@ -316,7 +316,7 @@ footer .middle{
     position: relative;
     text-align: center;
     /* color: #343741; */
-    color: white;
+    color: #FAE4D0;
 
     text-align: center;
     font-family: Reckless;
@@ -343,8 +343,8 @@ footer .middle{
     width: 300px;
     height: 58px;
     border-radius: 150px;
-    background: #CC793A;
-    color: white;
+    background: var(--beige);
+    color: var(--darkBlue);
 
     text-align: center;
     font-family: "Brut Grotesque";
@@ -418,13 +418,13 @@ footer .middle{
 
 .cta-button{
     transition: all 700ms cubic-bezier(0.19, 1, 0.22, 1);
-    border: 1px solid var(--orange);
+    border: 1px solid var(--beige);
     cursor: pointer;
 }
 
 .cta-button:hover{
     background-color: transparent;
-    color: var(--orange);
+    color: var(--beige);
 }
 
 .cta-background{
@@ -433,8 +433,8 @@ footer .middle{
     top: 0;
     left: 0;
     width: 100vw;
-    height: 200vh;
-    margin-top: -600px;
+    height: 300vh;
+    margin-top: -900px;
     z-index: -1;
     transition: all 200ms ease;
 }
@@ -552,13 +552,6 @@ footer .middle{
     opacity: 1;
 }
 
-nav {
-    transition: background-color 0.5s ease-in-out;
-}
-
-nav.transparent {
-    background-color: transparent; 
-}
 
 .input-wrapper{
     font-size: 16px;
@@ -706,5 +699,37 @@ input:focus{
 /* .nav-color-cta {
     background-color: var(--darkBlue); 
 } */
+
+
+.nav-color-amenities {
+    background-color: var(--darkBlue); 
+    color: var(--beige);
+    border-color: var(--beige);
+  }
+
+  .nav-color-amenities a{
+    color: var(--beige);
+  }
+  
+  /* Button inside amenities section */
+  .nav-color-amenities .register-btn {
+    background-color: var(--beige); /* Button background color */
+    color: var(--darkBlue); /* Button text color */
+  }
+  
+/* Ensure SVG logo is targeted correctly */
+.nav-color-amenities .nav-left .logo {
+    background-image: url('./assets/images/TheABeige.svg');
+    fill: var(--beige);
+    color: var(--beige);
+}
+
+nav {
+    transition: background-color 0.5s ease-in-out;
+}
+
+nav.transparent {
+    background-color: transparent; 
+}
       
     
