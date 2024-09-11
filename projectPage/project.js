@@ -71,6 +71,28 @@ scroll.on("scroll", (instance) => {
     ".second-section-divider"
   );
 
+  // Change background color of .cta-background after specific scroll
+  const ctaBackground = document.querySelector(".cta-background");
+  const scrollThreshold = 3800; // Change this value to your desired threshold
+  const bottomThreshold = 4560;
+  console.log(scrollTop);
+
+  if (scrollTop > scrollThreshold) {
+    // Remove the gradient and set a solid background color
+    ctaBackground.style.background = "#343741";
+  } else if (scrollTop < scrollThreshold) {
+    // Revert back to the gradient when scrolling back up
+    ctaBackground.style.background = "white";
+  }
+
+  if (scrollTop > bottomThreshold) {
+    // Revert back to the gradient when scrolling back up
+    ctaBackground.style.background = "white";
+  } else if (scrollTop < scrollThreshold) {
+    // Revert back to the gradient when scrolling back up
+    ctaBackground.style.background = "white";
+  }
+
   // Handle nav visibility based on scroll direction
   // handleNavVisibility(instance);
 });

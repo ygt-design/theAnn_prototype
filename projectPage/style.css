@@ -315,7 +315,8 @@ footer .middle{
 .cta{
     position: relative;
     text-align: center;
-    color: #343741;
+    /* color: #343741; */
+    color: white;
 
     text-align: center;
     font-family: Reckless;
@@ -427,14 +428,15 @@ footer .middle{
 }
 
 .cta-background{
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, var(--beige) 50%, rgba(255,255,255,1) 100%);  
+    /* background: linear-gradient(180deg, rgba(255,255,255,1) 0%,rgb(206, 181, 156) 50%, rgba(255,255,255,1) 100%);   */
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 200vh;
-    margin-top: -800px;
+    margin-top: -600px;
     z-index: -1;
+    transition: all 200ms ease;
 }
 
 .register-card-wrapper {
