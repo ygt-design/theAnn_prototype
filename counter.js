@@ -19,7 +19,7 @@ const observer = new IntersectionObserver(
         // Start counter for each number when the section is in view
         document.querySelectorAll(".number").forEach((el) => {
           const endValue = parseInt(el.innerText.trim());
-          animateCounter(el, 0, endValue, 700); // 2000ms for animation
+          animateCounter(el, 0, endValue, 1000); // 2000ms for animation
         });
         observer.disconnect(); // Stop observing after the numbers have been animated
       }

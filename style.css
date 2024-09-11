@@ -13,10 +13,32 @@
     src: url("./assets/fonts/Reckless-RegularItalic.otf");
 }
 
+@font-face{
+    font-family: 'Reckless-Light';
+    src: url("./assets/fonts/Reckless-Light.otf");
+}
+
+@font-face{
+    font-family: 'Brut Grotesque';
+    src: url("./assets/fonts/BrutGrotesque-Book.otf");
+}
+
+@font-face{
+    font-family: 'Reckless-Light-Italic';
+    src: url("./assets/fonts/Reckless-LightItalic.otf");
+}
+
+@font-face{
+    font-family: 'BrutBold';
+    src: url("./assets/fonts/BrutGrotesque-Bold.otf");
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
 }
 
 :root{
@@ -37,6 +59,10 @@ ul{
     align-items: center;
 }
 
+a{
+    text-decoration: none;
+}
+
 nav{
     width: 100vw;
     height: 100px;
@@ -55,6 +81,11 @@ nav{
     line-height: normal;
     letter-spacing: 1.68px;
 
+}
+
+footer li, nav li{
+    cursor: pointer;
+    transition: all 250ms ease;
 }
 
 .nav-left .logo{
@@ -117,9 +148,6 @@ nav .register-btn:hover{
     animation: moveIn 750ms cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
-
-
-
 .intro .intro--text{
     font-family: 'Reckless-Regular';
     font-size: 55px;
@@ -135,7 +163,7 @@ nav .register-btn:hover{
 .display--image{
     width: 100vw;
     height: 90vh;
-    background-image: url('./assets/images/displayImage.jpg');
+    background-image: url('./assets/images/leaves.jpg');
     background-size: 110%;
     transition: border-radius 0.2s ease;
 }
@@ -254,7 +282,96 @@ nav .register-btn:hover{
     /* border-radius: 0px 0px 150px 0px; */
     margin-left: 30px;
     margin-top: -127px;
+    cursor: pointer;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
 }
+
+.rectangle-switch-wrapper{
+    width: 447px;
+    height: 394px;
+    margin-left: 30px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0 0 150px 0;
+    margin-top: -127px;
+    background-color: var(--darkBlue);
+}
+
+.rectangle-switch-container{
+    width: calc(447px * 2);
+    height: 394px;
+    background-color: #343741;
+    color: var(--beige);
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-left: -10px;
+}
+
+.rectangle-switch-container .number{
+    font-family: 'Reckless-Light';
+    font-size: 120px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: -70px;
+    margin-bottom: 10px;
+}
+
+.rectangle-switch-container .rect-text{
+    font-family: 'Brut-Regular';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 350;
+
+    letter-spacing: 2.08px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+.rectangle-switch-container .rect-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rect-circles{
+    position: absolute;
+    bottom: 90px;
+    display: flex;
+    justify-content: space-between;
+    width: 165px;
+    left: 135px;
+}
+
+.rect-circles .circle{
+    background-color: #484C59;
+    z-index: 99999;
+}
+
+.rect-circles .selected{
+    background-color: var(--beige);
+}
+
+
+.rectangle-switch-container {
+    transition: transform 0.5s ease;
+    transform: translateX(0);
+    cursor: pointer;
+}
+  
+.rectangle-switch-container.translated {
+    transform: translateX(-50%);
+}  
+
+
+
+
 
 .neighbourhood-wrapper{
     padding-top: 213px;
@@ -646,15 +763,9 @@ nav .register-btn:hover{
     z-index: -4;
 }
 
-
-
-
-
-
-/* Default nav styles */
 nav 
 {
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
   
   /* Change color for outdoors-wrapper */
@@ -729,6 +840,8 @@ footer .footer-register-btn{
     border: 1px solid var(--darkBlue);
     cursor: pointer;
     transition: all 700ms cubic-bezier(0.19, 1, 0.22, 1);
+    margin-left: -5px;
+    margin-top: 20px;
 }
 
 footer .adress{
@@ -749,8 +862,6 @@ footer .middle{
     gap: 35px;
     justify-content: space-around;
 }
-
-
 .height-corrector{
     width: 100vw;
     height: 100vh;
@@ -761,6 +872,277 @@ footer .middle{
     height: 10vh;
 }
 
+
+.register-card-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: 0; /* Hidden initially */
+    display: none; /* Hidden initially */
+    z-index: 100;
+    font-family: "Brut-Regular";
+    transition: opacity 0.5s ease-in-out, backdrop-filter 0.5s ease-in-out; /* Animation for opacity and blur */
+    backdrop-filter: blur(0px); /* No blur initially */
+}
+
+.register-card-wrapper.active {
+    display: block;
+    opacity: 1;
+    backdrop-filter: blur(10px); /* Add blur effect */
+}
+
+.register-card{
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 650px;
+    height: 710px;
+    background-color: var(--darkBlue);
+    color: var(--beige);
+    padding-top: 120px;
+    padding-left: 150px;
+    padding-right: 150px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.register-card .circles .circle:first-child {
+    background-color: beige;
+}
+
+.contact-card{
+    position: absolute;
+    width: 480px;
+    height: 400px;
+    background-color: var(--beige);
+    z-index: 2;
+    border-top-right-radius: 150px;
+    bottom: 0;
+    right: 10%;
+    color: var(--darkBlue);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 70px;
+    grid-gap: 40px;
+    padding-top: 100px;
+    padding-left: 80px;
+}
+
+
+.contact-card .contact-title{
+    font-family: 'BrutBold';
+    margin-bottom: 5px;
+    font-size: 1.05rem;
+}
+
+.contact-card .contact-info{
+    margin-bottom: 35px;
+}
+
+.contact-card .social-icons{
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.register-card .title{
+    text-align: center;
+    font-family: 'Reckless-Light-Italic';
+    font-size: 25px;
+    font-size: 35px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 28px;
+    margin-bottom: 100px;
+    margin-top: -100px;
+}
+
+.register-card, .contact-card {
+    position: absolute;
+    bottom: -100vh; /* Off-screen initially */
+    transition: bottom 750ms cubic-bezier(0.075, 0.82, 0.165, 1), opacity 300ms ease-in-out;
+    opacity: 0; /* Initially hidden */
+}
+
+.register-card-wrapper.active .register-card {
+    bottom: 0; /* Animate into view */
+    transition-delay: 300ms; /* Delay for staggered effect */
+    opacity: 1;
+}
+
+.register-card-wrapper.active .contact-card {
+    bottom: 0; /* Animate into view */
+    transition-delay: 420ms;
+    opacity: 1;
+}
+
+nav {
+    transition: background-color 0.5s ease-in-out;
+}
+
+nav.transparent {
+    background-color: transparent; 
+}
+
+
+
+
+
+
+
+.btn-container{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.back-btn, .next-btn{
+    background-color: var(--beige);
+    color: var(--darkBlue);
+    width: fit-content;
+    width: 96px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid var(--beige);
+    margin-bottom: 10px;
+    letter-spacing: 0.1rem;
+    transition: all 200ms ease;
+}
+
+.back-btn:hover, .next-btn:hover{
+    background-color: var(--darkBlue);
+    color: var(--beige);
+}
+
+.back-btn{
+    opacity: 0;
+}
+
+
+.circles{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.circle{
+    width: 14px;
+    aspect-ratio: 1;
+    background-color: #484C59;
+    border-radius: 100px;
+}
+
+.input-wrapper{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 55px; /* 343.75% */
+    letter-spacing: 1.92px;
+}
+
+
+input{
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-bottom: 0.5px solid var(--beige);
+    background-color: transparent;
+    color: var(--beige);
+    font-family: "Reckless-Regular";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1.68px;
+    padding-left: 10px;
+    /* margin-top: 20px; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 55px; /* 275% */
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+input::placeholder{
+    color: #484C59;
+    font-family: "Reckless-Regular";
+}   
+
+input:focus{
+    outline: none;
+}
+
+.close-btn{
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 40px;
+    aspect-ratio: 1;
+    border: 1px solid var(--beige);
+    border-radius: 150px;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.close-btn--line{
+    height: 1px;
+    width: 20px;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-btn--line::before{
+    content: "";
+    height: 1px;
+    width: 20px;
+    height: 1px;
+    background-color: var(--beige);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-btn--line::after{
+    content: "";
+    height: 1px;
+    width: 20px;
+    height: 1px;
+    background-color: var(--beige);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.close-btn:hover{
+    background-color: var(--beige);
+    color: var(--darkBlue);
+}
+
+.close-btn:hover .close-btn--line::before, .close-btn:hover .close-btn--line::after{
+    background-color: var(--darkBlue);
+}
+
 @keyframes moveIn{
     0%{
         transform: translateY(200%);
@@ -769,5 +1151,6 @@ footer .middle{
         transform: translateY(0%);
     }
 }
+
 
 

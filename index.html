@@ -14,6 +14,87 @@
 </head>
 
 <body>
+    <div class="register-card-wrapper">
+        <div class="register-card">
+            <div class="close-btn">
+                <div class="close-btn--line"></div>
+            </div>
+            <div class="title">
+                Register
+                Now
+            </div>
+            <div class="input-wrapper">
+                <div class="input-title"> FIRST & LAST NAME </div>
+                <input type="text" placeholder="First & Last Name">
+            </div>
+            <div class="btn-container">
+                <div class="back-btn"> BACK </div>
+
+                <div class="next-btn"> NEXT </div>
+            </div>
+            <div class="circles">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div class="contact-left">
+                <div class="adress">
+                    <div class="contact-title">
+                        ADDRESS
+                    </div>
+                    <div class="contact-info">
+                        17 Ann St, Mississauga, <br> ON L5G 3E9
+                    </div>
+                </div>
+                <div class="hours">
+                    <div class="contact-title">
+                        HOURS
+                    </div>
+                    <div class="contact-info">
+                        <div class="monday" style="margin-bottom: 5px;"> Monday to Friday:<br>12PM to 6PM </div>
+                        Saturday & Sunday:<br>12PM to 5PM
+                    </div>
+                </div>
+            </div>
+            <div class="contact-right">
+                <div class="email">
+                    <div class="contact-title">
+                        EMAIL
+                    </div>
+                    <div class="contact-info">
+                        info@theann.ca
+                    </div>
+                </div>
+                <div class="phone">
+                    <div class="contact-title">
+                        PHONE
+                    </div>
+                    <div class="contact-info">
+                        +1 416 123 4568
+                    </div>
+                </div>
+                <div class="social">
+                    <div class="contact-title">
+                        SOCIAL
+                    </div>
+                    <div class="social-icons">
+                        <div class="instagram">
+                            <img src="./assets/images/instagram.svg" alt="">
+                        </div>
+                        <div class="twitter">
+                            <img src="./assets/images/twitter.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- <div class="grid">
         <div class="grid-column"></div>
@@ -40,15 +121,12 @@
                 <li> OUTDOORS </li>
                 <li> AMENITIES </li>
                 <li> INTERIORS </li>
-                <li class="register-btn"> REGISTER </li>
+                <li class="register register-btn"> REGISTER </li>
             </ul>
         </div>
     </nav>
 
-
-
     <div data-scroll-container class="container">
-
 
         <div class="intro">
             <div class="intro--logo">
@@ -101,13 +179,48 @@
                     to
                     specialty stores, florists to farmers markets, Port Credit has everything you need all close to
                     home.
-                    <div class="button">
-                        Explore the Neighborhood
-                    </div>
+                    <a href="./projectPage/index.html">
+                        <div class="button">
+                            Explore the Neighborhood
+                        </div>
+                    </a>
                 </div>
             </section>
 
-            <img class="rectangle-switch" src="./assets/images/rectangleSwitch.svg" alt="">
+            <!-- <div class="rectangle-switch">
+
+            </div> -->
+
+            <div class="rectangle-switch-wrapper">
+                <div class="rectangle-switch-container">
+                    <div class="rect-image rect-image-one">
+                        <div class="number">
+                            17
+                        </div>
+                        <div class="rect-text">
+                            MIN DRIVE TO <br> PEARSON AIRPORT
+                        </div>
+                    </div>
+                    <div class="rect-image rect-image-two">
+                        <div class="number">
+                            25
+                        </div>
+                        <div class="rect-text">
+                            MIN TRAIN TO <br> UNION STATION
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rect-circles">
+                    <div class="circle"></div>
+                    <div class="circle selected"></div>
+                    <div class="circle selected-two"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </div>
+
 
             <div class="neighboruhood-image-grid">
                 <div data-scroll data-scroll-speed="2" class="n-image n-image-one"></div>
@@ -125,18 +238,18 @@
                     Outdoors
                 </div>
                 <div class="section--text">
-                    Nearly three dozen parks are scattered throughout  Port Credit with most of them set on the
-                    water
-                    providing the perfect setting for an active lifestyle. At Jack Darling Park, the bights green
-                    space
-                    in
-                    Port Credit, discover sandy beaches, tennis courts, a large off leash dog park, and connections
-                    to
-                    the
-                    renowned  Waterfront Trail.
-                    <div class="button">
-                        Explore the Outdoors
-                    </div>
+                    Nearly three dozen parks are scattered throughout Port Credit with most of them set on the
+                    water providing the perfect setting for an active lifestyle. At Jack Darling Park, the bights
+                    green
+                    space in Port Credit, discover sandy beaches, tennis courts, a large off leash dog park, and
+                    connections
+                    to the renowned Waterfront Trail.
+
+                    <a href="./projectPage/index.html">
+                        <div class="button">
+                            Explore the Outdoors
+                        </div>
+                    </a>
                 </div>
             </section>
 
@@ -188,9 +301,12 @@
                     Within curving lines, sculptural design, and direct slightness to the outdoors from almost every
                     space,
                     the amenities at The Ann are yet another element that pay homage to the natural landscape.
-                    <div class="button">
-                        Explore the Amenities
-                    </div>
+
+                    <a href="./projectPage/index.html">
+                        <div class="button">
+                            Explore the Amenities
+                        </div>
+                    </a>
                 </div>
             </section>
         </section>
@@ -214,9 +330,11 @@
                     landscape
                     of
                     Port Credit, while forging ahead with a more refined aesthetic for today’s modern lifestyle.
-                    <div class="button">
-                        Explore the Interiors
-                    </div>
+                    <a href="./projectPage/index.html">
+                        <div class="button">
+                            Explore the Interiors
+                        </div>
+                    </a>
                 </div>
             </section>
 
@@ -236,7 +354,7 @@
                     Live in a Scenic <br>
                     <span class="italic">Residence</span> on the Park
                 </div>
-                <div class="cta-button">REGISTER NOW</div>
+                <div class="register cta-button">REGISTER NOW</div>
             </div>
 
             <div class="cta-image-wrapper">
@@ -282,7 +400,7 @@
                     <li> OUTDOORS </li>
                     <li> AMENITIES </li>
                     <li> INTERIORS </li>
-                    <li class="footer-register-btn register-btn"> REGISTER </li>
+                    <li class="register footer-register-btn register-btn"> REGISTER </li>
                 </ul>
             </div>
         </footer>
@@ -299,6 +417,7 @@
     <script src="./script.js"></script>
     <script src="./index.js"></script>
     <script src="./counter.js"></script>
+    <script src="./transition.js"></script>
 </body>
 
 </html>

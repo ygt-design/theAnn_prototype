@@ -3,6 +3,9 @@ const scroll = new LocomotiveScroll({
   smooth: true,
 });
 
+let lastScrollY = 0;
+let isNavHidden = false;
+
 // Helper function to check if an element is in the viewport (using Locomotive Scroll)
 function isInViewport(element, instance) {
   const rect = element.getBoundingClientRect();
@@ -10,14 +13,12 @@ function isInViewport(element, instance) {
   const elementTop = rect.top + offsetTop;
   const elementBottom = rect.bottom + offsetTop;
 
-  // Check if the element's top is above the bottom of the viewport
   return (
     elementTop < window.innerHeight + instance.scroll.y &&
     elementBottom > instance.scroll.y
   );
 }
 
-// Function to check if the nav has hit the top of the .outdoors-wrapper
 function checkNavColorChange(instance) {
   const nav = document.querySelector("nav");
   const outdoorsWrapper = document.querySelector(".outdoors-wrapper");
@@ -26,7 +27,6 @@ function checkNavColorChange(instance) {
 
   // Get the bottom of the nav and the top of each wrapper
   const navBottom = nav.getBoundingClientRect().bottom + instance.scroll.y;
-
   const outdoorsTop =
     outdoorsWrapper.getBoundingClientRect().top + instance.scroll.y;
   const amenitiesTop =
@@ -55,6 +55,39 @@ function checkNavColorChange(instance) {
   }
 }
 
+// Function to hide or show the nav based on scroll direction
+function handleNavVisibility(instance) {
+  const nav = document.querySelector("nav");
+  const currentScrollY = instance.scroll.y;
+
+  // Check if scrolling down
+  if (currentScrollY > lastScrollY && !isNavHidden) {
+    nav.style.transform = "translateY(-100%)"; // Hide the nav
+    isNavHidden = true;
+  }
+  // Check if scrolling up
+  else if (currentScrollY < lastScrollY && isNavHidden) {
+    nav.style.transform = "translateY(0)"; // Show the nav
+    isNavHidden = false;
+  }
+
+  lastScrollY = currentScrollY;
+}
+
+// Image toggle click event - Move outside scroll handler to avoid multiple bindings
+let originalSrc = "./assets/images/rectangleSwitch.svg";
+let alternativeSrc = "./assets/images/alternativeClick.svg";
+
+$(".rectangle-switch").on("click", function () {
+  let $img = $(this);
+
+  // Get the current image source
+  let currentSrc = $img.attr("src");
+
+  // Toggle the image source
+  $img.attr("src", currentSrc === originalSrc ? alternativeSrc : originalSrc);
+});
+
 // Scroll event handler for Locomotive Scroll
 scroll.on("scroll", (instance) => {
   var scrollTop = instance.scroll.y;
@@ -63,11 +96,17 @@ scroll.on("scroll", (instance) => {
   // Calculate the border-radius for each element
   var newRadiusFirstSection = (scrollTop / maxScroll) * 2100;
   var newRadiusRectangleSwitch = (scrollTop / maxScroll) * 650;
+  var newRadiusFirstProject = (scrollTop / maxScroll) * 1600;
 
   // Animate border-radius for .first-section-divider
   $(".first-section-divider").css(
     "border-radius",
     "0px 0px " + newRadiusFirstSection + "px 0px"
+  );
+
+  $(".first-project-display").css(
+    "border-radius",
+    "0px 0px " + newRadiusFirstProject + "px 0px"
   );
 
   // Animate border-radius for .rectangle-switch
@@ -92,4 +131,7 @@ scroll.on("scroll", (instance) => {
 
   // Check if nav color should change based on its position relative to .outdoors-wrapper
   checkNavColorChange(instance);
+
+  // Handle nav visibility based on scroll direction
+  // handleNavVisibility(instance);
 });
