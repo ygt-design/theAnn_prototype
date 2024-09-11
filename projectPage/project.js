@@ -44,5 +44,34 @@ function checkNavColorChange(instance) {
 
 // Scroll event handler for Locomotive Scroll
 scroll.on("scroll", (instance) => {
+  var scrollTop = instance.scroll.y;
+  var maxScroll = document.body.scrollHeight - window.innerHeight;
+
+  // Calculate the border-radius for each element
+  var newRadiusFirstSection = (scrollTop / maxScroll) * 2100;
+  var newRadiusRectangleSwitch = (scrollTop / maxScroll) * 650;
+  var newRadiusFirstProject = (scrollTop / maxScroll) * 1600;
+
+  // Animate border-radius for .first-section-divider
+  $(".first-section-divider").css(
+    "border-radius",
+    "0px 0px " + newRadiusFirstSection + "px 0px"
+  );
+
+  $(".first-project-display").css(
+    "border-radius",
+    "0px 0px " + newRadiusFirstProject + "px 0px"
+  );
+
+  // Animate border-radius for .rectangle-switch
+  $(".rectangle-switch").css(
+    "border-radius",
+    "0px 0px " + newRadiusRectangleSwitch + "px 0px"
+  );
+
+  // Get the .second-section-divider element
+  const secondSectionDivider = document.querySelector(
+    ".second-section-divider"
+  );
   checkNavColorChange(instance);
 });
