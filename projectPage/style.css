@@ -432,8 +432,8 @@ footer .middle{
     top: 0;
     left: 0;
     width: 100vw;
-    height: 120vh;
-    margin-top: -400px;
+    height: 200vh;
+    margin-top: -800px;
     z-index: -1;
 }
 
