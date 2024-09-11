@@ -6,7 +6,6 @@ const scroll = new LocomotiveScroll({
 let lastScrollY = 0;
 let isNavHidden = false;
 
-// Helper function to check if an element is in the viewport (using Locomotive Scroll)
 function isInViewport(element, instance) {
   const rect = element.getBoundingClientRect();
   const offsetTop = instance.scroll.y;
